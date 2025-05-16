@@ -1,8 +1,11 @@
-const OrderButton = ({totalPrice, placeOrder}) => {
+import Button from "../../../ui/Button/Button";
+
+const OrderButton = ({ totalPrice, placeOrder }) => {
+  const content = `Place Order (BDT ${totalPrice})`
   return (
-    <button onClick={placeOrder} className="w-full bg-primary hover:bg-opacity-90 text-white font-medium py-3 rounded-full transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1">
-      Place Order (BDT {totalPrice})
-    </button>
+    <>
+      <Button variant="primary" clickHandler={placeOrder} content={content} />
+    </>
   );
 };
 
