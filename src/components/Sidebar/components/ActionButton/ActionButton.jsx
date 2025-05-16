@@ -3,8 +3,8 @@ import RemoveIcon from "../RemoveIcon/RemoveIcon";
 
 const ActionButton = ({
   item,
-  isSelected,
-  setIsSelected,
+  menuItems,
+  setMenuItems,
   selectedItems,
   setSelectedItems,
   totalPrice,
@@ -12,14 +12,34 @@ const ActionButton = ({
 }) => {
   const handleSelect = () => {
     let updatedSelectedItems;
-    if (!isSelected) {
+    if (!item.isSelected) {
       updatedSelectedItems = [...selectedItems, item];
-      setIsSelected(true);
+      const updatedMenuItems = menuItems.map((m) => {
+        if (item.id === m.id) {
+          return {
+            ...item,
+            isSelected: true,
+          };
+        } else {
+          return m;
+        }
+      });
+      setMenuItems(updatedMenuItems)
       setSelectedItems(updatedSelectedItems);
       setTotalPrice(totalPrice + item.price);
     } else {
       updatedSelectedItems = selectedItems.filter((s) => s.id !== item.id);
-      setIsSelected(false);
+      const updatedMenuItems = menuItems.map((m) => {
+        if (item.id === m.id) {
+          return {
+            ...item,
+            isSelected: false,
+          };
+        } else {
+          return m;
+        }
+      });
+      setMenuItems(updatedMenuItems)
       setSelectedItems(updatedSelectedItems);
       setTotalPrice(totalPrice - item.price);
     }
@@ -29,7 +49,7 @@ const ActionButton = ({
       onClick={handleSelect}
       className="w-8 h-8 bg-gray-800 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-300"
     >
-      {isSelected ? <RemoveIcon /> : <AddIcon />}
+      {item.isSelected ? <RemoveIcon /> : <AddIcon />}
     </button>
   );
 };
