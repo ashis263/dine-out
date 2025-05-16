@@ -10,7 +10,7 @@ import pizza from "../../../../assets/images/pizza.png";
 import pastry from "../../../../assets/images/pastry.png";
 import MenuIteam from "../MenuItem/MenuItem";
 
-const Menu = () => {
+const Menu = ({ selectedItems, setSelectedItems, totalPrice, setTotalPrice }) => {
   const menuItems = [
     { id: 1, name: "Burger", price: 299, image: burger },
     { id: 2, name: "Fried Chicken", price: 349, image: chicken },
@@ -30,9 +30,12 @@ const Menu = () => {
         {menuItems.map((item) => (
           <MenuIteam
             key={item.id}
-            name={item.name}
-            price={item.price}
-            image={item.image}
+            item={item}
+            
+            selectedItems={selectedItems}
+            setSelectedItems={setSelectedItems}
+            totalPrice={totalPrice}
+            setTotalPrice={setTotalPrice}
           />
         ))}
       </div>
