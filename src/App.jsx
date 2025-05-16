@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
+import PastOrders from "./components/PastOrders/PastOrders";
 
 const App = () => {
   const [orders, setOrders] = useState([]);
@@ -11,6 +12,7 @@ const App = () => {
       </header>
       <main className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 flex-grow">
         <Sidebar orders={orders} setOrders={setOrders} />
+        <PastOrders orders={orders} />
       </main>
     </div>
   );
