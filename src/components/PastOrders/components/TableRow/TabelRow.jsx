@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "../../../ui/Button/Button";
 
 const TabelRow = ({
@@ -7,6 +8,7 @@ const TabelRow = ({
   ordersToRender,
   setOrdersToRender,
 }) => {
+  const [isDelivered, setIsDelivered] = useState(false);
   const { id, customerName, items, amount, status } = order;
   const handleDelete = () => {
     const orderAfterDeletingFromAll = orders.filter((o) => o.id !== id);
@@ -33,6 +35,7 @@ const TabelRow = ({
       }
     });
     setOrdersToRender(orderAfterDeliveringFromFiltered);
+    setIsDelivered(true);
   };
   return (
     <tr className="border-t border-gray-700">
@@ -45,7 +48,7 @@ const TabelRow = ({
       </td>
       <td className="py-3">
         <Button variant="delete" content="Delete" clickHandler={handleDelete} />
-        <Button variant="deliver" content="DELIVER" clickHandler={handleDeliver} />
+        <Button variant="deliver" content="DELIVER" clickHandler={handleDeliver} isDelivered={isDelivered} />
       </td>
     </tr>
   );
