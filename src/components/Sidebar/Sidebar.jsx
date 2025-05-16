@@ -4,11 +4,10 @@ import NameInput from "./components/NameInput/NameInput";
 import OrderButton from "./components/OrderButton/OrderButton";
 import SidebarIntro from "./components/SidebarIntro/SidebarIntro";
 
-const Sidebar = ({ orders, setOrders }) => {
+const Sidebar = ({ orders, setOrders, setOrdersToRender }) => {
   const [customerName, setCustomerName] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  console.log(orders);
   const placeOrder = () => {
     if (!selectedItems.length && !customerName.length) {
       alert("Please enter cutomer name and select some items!");
@@ -23,10 +22,12 @@ const Sidebar = ({ orders, setOrders }) => {
     const order = {
       id: orders.length + 1,
       customerName,
-      totalItems: selectedItems.length,
+      items: selectedItems.length,
+      amount: totalPrice,
       status: "PENDING",
     };
     setOrders([...orders, order]);
+    setOrdersToRender([...orders, order]);
     setSelectedItems([]);
     setTotalPrice(0);
     setCustomerName("");
