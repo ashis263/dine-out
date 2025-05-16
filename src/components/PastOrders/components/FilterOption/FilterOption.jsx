@@ -15,7 +15,7 @@ const FilterOption = ({ orders, setOrdersToRender }) => {
   return (
     <select
       onChange={handleChange}
-      className="appearance-none bg-zinc-900 accent-orange-600 border-none outline-none rounded-sm"
+      className=" !bg-zinc-900 accent-orange-600 border-none outline-none rounded-sm"
     >
       <option value="All">All</option>
       <option value="Pending">Pending</option>

@@ -44,6 +44,7 @@ const Sidebar = ({ orders, setOrders, setOrdersToRender }) => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [menuItems, setMenuItems] = useState(menu);
+  const [orderId, setOrderId] = useState(1);
   const placeOrder = () => {
     if (!selectedItems.length && !customerName.length) {
       alert("Please enter cutomer name and select some items!");
@@ -55,19 +56,21 @@ const Sidebar = ({ orders, setOrders, setOrdersToRender }) => {
       alert("Please enter the customer name!");
       return;
     }
+
     const order = {
-      id: orders.length + 1,
+      id: orderId,
       customerName,
       items: selectedItems.length,
       amount: totalPrice,
       status: "Pending",
     };
-    setOrders([order,...orders]);
-    setOrdersToRender([order,...orders]);
+    setOrders([order, ...orders]);
+    setOrdersToRender([order, ...orders]);
     setSelectedItems([]);
     setTotalPrice(0);
     setCustomerName("");
     setMenuItems(menu);
+    setOrderId(orderId + 1);
   };
   return (
     <aside className="bg-cardbg rounded-lg p-6 h-[calc(100vh_-_130px)]">
