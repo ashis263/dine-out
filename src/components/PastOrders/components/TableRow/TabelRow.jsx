@@ -1,5 +1,39 @@
-const TabelRow = ({order}) => {
+import Button from "../../../ui/Button/Button";
+
+const TabelRow = ({
+  order,
+  orders,
+  setOrders,
+  ordersToRender,
+  setOrdersToRender,
+}) => {
   const { id, customerName, items, amount, status } = order;
+  const handleDelete = () => {
+    const orderAfterDeletingFromAll = orders.filter((o) => o.id !== id);
+    setOrders(orderAfterDeletingFromAll);
+    const orderAfterDeletingFromFiltered = ordersToRender.filter(
+      (o) => o.id !== id
+    );
+    setOrdersToRender(orderAfterDeletingFromFiltered);
+  };
+  const handleDeliver = () => {
+    const orderAfterDeliveringFromAll = orders.map((o) => {
+      if (o.id === id) {
+        return {...o, status: "Delivered"}
+      }else{
+        return o;
+      }
+    });
+    setOrders(orderAfterDeliveringFromAll);
+    const orderAfterDeliveringFromFiltered = ordersToRender.map((o) => {
+      if (o.id === id) {
+        return {...o, status: "Delivered"}
+      }else{
+        return o;
+      }
+    });
+    setOrdersToRender(orderAfterDeliveringFromFiltered);
+  };
   return (
     <tr className="border-t border-gray-700">
       <td className="py-3">{id}</td>
@@ -10,12 +44,8 @@ const TabelRow = ({order}) => {
         <span className="text-red-500 uppercase">{status}</span>
       </td>
       <td className="py-3">
-        <button className="bg-gray-800 hover:bg-red-600 text-xs px-3 py-1 rounded-full mr-1 transition-colors duration-300">
-          Delete
-        </button>
-        <button className="bg-gray-800 hover:bg-green-600 text-xs px-3 py-1 rounded-full transition-colors duration-300">
-          DELIVER
-        </button>
+        <Button variant="delete" content="Delete" clickHandler={handleDelete} />
+        <Button variant="deliver" content="DELIVER" clickHandler={handleDeliver} />
       </td>
     </tr>
   );

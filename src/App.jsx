@@ -13,7 +13,7 @@ const App = () => {
       </header>
       <main className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6 flex-grow">
         <Sidebar orders={orders} setOrders={setOrders} ordersToRender={ordersToRender} setOrdersToRender={setOrdersToRender}  />
-        <PastOrders orders={orders} ordersToRender={ordersToRender} setOrdersToRender={setOrdersToRender} />
+        <PastOrders orders={orders} ordersToRender={ordersToRender} setOrders={setOrders} setOrdersToRender={setOrdersToRender} />
       </main>
     </div>
   );
