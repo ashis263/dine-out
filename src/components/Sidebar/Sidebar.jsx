@@ -24,7 +24,7 @@ const Sidebar = ({ orders, setOrders, setOrdersToRender }) => {
       customerName,
       items: selectedItems.length,
       amount: totalPrice,
-      status: "PENDING",
+      status: "Pending",
     };
     setOrders([...orders, order]);
     setOrdersToRender([...orders, order]);

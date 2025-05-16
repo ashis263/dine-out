@@ -7,7 +7,7 @@ const TabelRow = ({order}) => {
       <td className="py-3">{items}</td>
       <td className="py-3">{amount}</td>
       <td className="py-3">
-        <span className="text-red-500">{status}</span>
+        <span className="text-red-500 uppercase">{status}</span>
       </td>
       <td className="py-3">
         <button className="bg-gray-800 hover:bg-red-600 text-xs px-3 py-1 rounded-full mr-1 transition-colors duration-300">
